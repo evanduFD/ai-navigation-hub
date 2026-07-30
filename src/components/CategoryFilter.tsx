@@ -10,8 +10,7 @@ type Props = {
 const CHIPS = [{ id: 'all' as const, label: 'All tools' }, ...CATEGORIES]
 
 /** One brand-teal treatment for every chip, so selection reads as a single state. */
-const ACTIVE_GLOW = `0 6px 22px -6px color-mix(in oklab, var(--color-brand) 75%, transparent),
-   0 0 0 1px color-mix(in oklab, var(--color-brand) 45%, transparent)`
+const ACTIVE_GLOW = '0 6px 22px -6px color-mix(in oklab, var(--color-brand) 80%, transparent)'
 
 export function CategoryFilter({ active, onChange, counts }: Props) {
   // Without layoutId the pill snaps between chips, which is the correct
@@ -31,11 +30,10 @@ export function CategoryFilter({ active, onChange, counts }: Props) {
             aria-pressed={isActive}
             // No transform on this button: it hosts the layoutId pill, and scaling
             // the parent would skew motion's layout-projection measurements.
-            className={`hub-chip relative rounded-full border px-4 py-2 text-[0.8rem] transition-colors duration-300 ${
+            className={`hub-chip relative rounded-full px-4 py-2 text-[0.8rem] transition-colors duration-300 ${
               isActive ? 'font-semibold' : 'font-medium text-muted hover:text-fg'
             }`}
             style={{
-              borderColor: isActive ? 'transparent' : 'var(--hub-border-strong)',
               background: isActive ? undefined : 'var(--hub-card)',
               color: isActive ? 'oklch(0.16 0.012 265)' : undefined,
               boxShadow: isActive ? ACTIVE_GLOW : undefined,

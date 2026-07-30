@@ -1,16 +1,18 @@
+// Anchored on the Frontier teal, with a deeper cyan and a light mint either side of
+// it. Staying inside one hue family reads as brand colour rather than decoration.
 const BLOBS = [
   {
-    color: 'oklch(0.62 0.19 275)',
+    color: 'var(--color-brand)',
     animation: 'hub-drift-a 30s ease-in-out infinite',
     style: { top: '-18rem', left: '-10rem', width: '46rem', height: '46rem' },
   },
   {
-    color: 'oklch(0.7 0.16 205)',
+    color: 'oklch(0.6 0.11 220)',
     animation: 'hub-drift-b 38s ease-in-out infinite',
     style: { top: '-8rem', right: '-14rem', width: '42rem', height: '42rem' },
   },
   {
-    color: 'oklch(0.62 0.2 330)',
+    color: 'oklch(0.85 0.13 175)',
     animation: 'hub-drift-c 46s ease-in-out infinite',
     style: { top: '16rem', left: '32%', width: '38rem', height: '38rem' },
   },

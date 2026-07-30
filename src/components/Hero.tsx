@@ -34,7 +34,7 @@ export function Hero({ availableCount, totalCount }: { availableCount: number; t
           className="bg-clip-text text-transparent"
           style={{
             backgroundImage:
-              'linear-gradient(100deg, var(--color-conversational), var(--color-workbench) 45%, var(--color-operations))',
+              'linear-gradient(100deg, oklch(0.68 0.12 220), var(--color-brand) 45%, oklch(0.87 0.14 172))',
           }}
         >
           one place
