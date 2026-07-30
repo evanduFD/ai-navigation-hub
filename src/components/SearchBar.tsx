@@ -42,7 +42,7 @@ export function SearchBar({ value, onChange, inputRef, resultCount }: Props) {
             onChange('')
             inputRef.current?.focus()
           }}
-          className="absolute top-1/2 right-3 grid size-7 -translate-y-1/2 place-items-center rounded-full text-muted transition-colors hover:[background:var(--hub-card-hover)] hover:text-fg"
+          className="absolute top-1/2 right-3 grid size-7 -translate-y-1/2 place-items-center rounded-full text-muted transition-colors duration-500 ease-[var(--ease-smooth)] hover:[background:var(--hub-card-hover)] hover:text-fg"
         >
           <X className="size-3.5" aria-hidden />
           <span className="sr-only">Clear search</span>
