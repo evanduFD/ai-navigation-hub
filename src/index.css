@@ -13,6 +13,9 @@
   --color-line: var(--hub-border);
   --color-line-strong: var(--hub-border-strong);
 
+  /* Sampled from public/frontier-logo.png. */
+  --color-brand: #2fc7ba;
+
   --color-conversational: oklch(0.72 0.15 235);
   --color-workbench: oklch(0.74 0.16 305);
   --color-operations: oklch(0.76 0.15 165);
