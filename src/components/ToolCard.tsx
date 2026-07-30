@@ -8,11 +8,13 @@ import { useSpotlight } from '../hooks/useSpotlight'
 //   property, not `transform`, so a transition on `transform` never animates the
 //   lift and it snaps instead.
 //   `box-shadow` — otherwise the shadow appears instantly while the lift eases.
+// Colours are not set here — they live in the .hub-card rules in index.css, because
+// an inline style beats any stylesheet rule and would make hover impossible.
 const SHELL =
-  'hub-card group relative flex h-full flex-col gap-3 overflow-hidden rounded-2xl border p-5 text-left transition-[border-color,background-color,box-shadow,translate] duration-[400ms] ease-[var(--ease-smooth)]'
+  'hub-card group relative flex h-full flex-col gap-3 overflow-hidden rounded-2xl border p-5 text-left transition-[border-color,background-color,color,box-shadow,translate] duration-[400ms] ease-[var(--ease-smooth)]'
 
 const HOVER =
-  'hover:-translate-y-1 hover:[border-color:var(--hub-border-strong)] hover:[background:var(--hub-card-hover)] hover:shadow-[0_22px_48px_-24px_rgb(0_0_0/0.55)] focus-within:[border-color:var(--hub-border-strong)] motion-reduce:hover:translate-y-0'
+  'hover:-translate-y-1 hover:shadow-[0_22px_48px_-24px_rgb(0_0_0/0.55)] motion-reduce:hover:translate-y-0'
 
 export function ToolCard({ tool }: { tool: Tool }) {
   const { ref, spotlight } = useSpotlight<HTMLDivElement>()
@@ -26,16 +28,14 @@ export function ToolCard({ tool }: { tool: Tool }) {
       {...(available ? spotlight : {})}
       className={available ? `${SHELL} ${HOVER}` : `${SHELL} cursor-not-allowed opacity-70`}
       aria-disabled={available ? undefined : true}
-      style={{
-        background: 'var(--hub-card)',
-        borderColor: 'var(--hub-border)',
-        ...({
+      style={
+        {
           '--accent': accent,
           '--glow': '0',
           '--mx': '50%',
           '--my': '50%',
-        } as React.CSSProperties),
-      }}
+        } as React.CSSProperties
+      }
     >
       {/* Accent rule that wipes across the top edge on hover. */}
       {available && (
@@ -61,17 +61,14 @@ export function ToolCard({ tool }: { tool: Tool }) {
       )}
 
       <div className="relative flex items-start justify-between gap-3">
-        <span
-          className="hub-card-tile grid size-10 shrink-0 place-items-center rounded-xl border"
-          style={{ color: available ? accent : 'var(--hub-muted)' }}
-        >
+        <span className="hub-card-tile grid size-10 shrink-0 place-items-center rounded-xl border">
           <Icon className="size-5" strokeWidth={1.75} aria-hidden />
         </span>
 
         {available ? (
           <ArrowUpRight
             aria-hidden
-            className="size-4 shrink-0 translate-y-1 text-muted opacity-0 transition-[translate,opacity] duration-[700ms] ease-[var(--ease-smooth)] group-hover:translate-y-0 group-hover:opacity-100"
+            className="hub-card-arrow size-4 shrink-0 translate-y-1 opacity-0 transition-[translate,opacity,color] duration-[700ms] ease-[var(--ease-smooth)] group-hover:translate-y-0 group-hover:opacity-100"
           />
         ) : (
           <span
@@ -87,7 +84,7 @@ export function ToolCard({ tool }: { tool: Tool }) {
         <h3 className="hub-card-title text-[0.975rem] leading-snug font-semibold tracking-tight">
           {tool.name}
         </h3>
-        <p className="text-[0.8rem] leading-relaxed text-muted">{tool.blurb}</p>
+        <p className="hub-card-blurb text-[0.8rem] leading-relaxed">{tool.blurb}</p>
       </div>
 
       {/* A stretched overlay keeps the whole card clickable while the anchor stays a

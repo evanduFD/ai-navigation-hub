@@ -40,6 +40,13 @@
     --hub-aurora-opacity: 0.38;
     --hub-grain-opacity: 0.028;
     --hub-aurora-blend: normal;
+
+    /* Card hover inverts to the opposite end of the theme. */
+    --hub-invert-bg: oklch(0.19 0.015 265);
+    --hub-invert-fg: oklch(0.98 0.002 265);
+    --hub-invert-muted: oklch(0.72 0.012 265);
+    /* Accents are light, so on this dark hover fill they mix toward white. */
+    --hub-invert-mix: white;
   }
 
   :root.dark {
@@ -56,6 +63,14 @@
     --hub-aurora-opacity: 0.6;
     --hub-grain-opacity: 0.05;
     --hub-aurora-blend: screen;
+
+    /* Card hover inverts to the opposite end of the theme. */
+    --hub-invert-bg: oklch(0.97 0.004 265);
+    --hub-invert-fg: oklch(0.16 0.012 265);
+    --hub-invert-muted: oklch(0.44 0.014 265);
+    /* Accents are light, so on this near-white hover fill they must darken or
+       a 0.84-lightness mint would all but vanish. */
+    --hub-invert-mix: black;
   }
 
   html {
@@ -112,32 +127,77 @@
     transition: transform 0.9s var(--ease-smooth);
   }
 
-  /* These colours live here rather than inline: an inline style would win over
-     the hover rule below. `:not([aria-disabled])` keeps "Coming soon" cards inert. */
-  .hub-card-tile {
-    background: color-mix(in oklab, var(--accent) 12%, transparent);
+  /* Every colour below lives in CSS rather than inline. An inline style beats any
+     stylesheet rule regardless of specificity, so a card whose background is set
+     inline can never be re-coloured on hover. */
+  .hub-card {
+    background-color: var(--hub-card);
     border-color: var(--hub-border);
+    color: var(--hub-fg);
+  }
+
+  .hub-card-tile {
+    background-color: color-mix(in oklab, var(--accent) 12%, transparent);
+    border-color: var(--hub-border);
+    color: var(--accent);
+  }
+
+  .hub-card[aria-disabled] .hub-card-tile {
+    color: var(--hub-muted);
+  }
+
+  .hub-card-blurb,
+  .hub-card-arrow {
+    color: var(--hub-muted);
   }
 
   .hub-card-tile,
-  .hub-card-title {
+  .hub-card-title,
+  .hub-card-blurb,
+  .hub-card-arrow {
     transition:
       background-color 0.7s var(--ease-smooth),
       border-color 0.7s var(--ease-smooth),
       color 0.7s var(--ease-smooth);
   }
 
-  .hub-card:not([aria-disabled]):hover .hub-card-rule {
+  /* Hover flips the card to the opposite end of the theme: white-on-black becomes
+     black-on-white and vice versa. `:not([aria-disabled])` keeps "Coming soon"
+     cards inert. */
+  .hub-card:not([aria-disabled]):hover,
+  .hub-card:not([aria-disabled]):focus-within {
+    background-color: var(--hub-invert-bg);
+    border-color: var(--hub-invert-bg);
+    color: var(--hub-invert-fg);
+  }
+
+  .hub-card:not([aria-disabled]):hover .hub-card-rule,
+  .hub-card:not([aria-disabled]):focus-within .hub-card-rule {
     transform: scaleX(1);
   }
 
-  .hub-card:not([aria-disabled]):hover .hub-card-tile {
-    background: color-mix(in oklab, var(--accent) 26%, transparent);
-    border-color: color-mix(in oklab, var(--accent) 45%, transparent);
+  .hub-card:not([aria-disabled]):hover .hub-card-title,
+  .hub-card:not([aria-disabled]):focus-within .hub-card-title,
+  .hub-card:not([aria-disabled]):hover .hub-card-arrow,
+  .hub-card:not([aria-disabled]):focus-within .hub-card-arrow {
+    color: var(--hub-invert-fg);
   }
 
-  .hub-card:not([aria-disabled]):hover .hub-card-title {
-    color: var(--accent);
+  .hub-card:not([aria-disabled]):hover .hub-card-blurb,
+  .hub-card:not([aria-disabled]):focus-within .hub-card-blurb {
+    color: var(--hub-invert-muted);
+  }
+
+  /* The icon keeps its category accent, mixed toward the inverted background so it
+     stays legible against it. */
+  .hub-card:not([aria-disabled]):hover .hub-card-tile,
+  .hub-card:not([aria-disabled]):focus-within .hub-card-tile {
+    background-color: color-mix(in oklab, var(--accent) 22%, transparent);
+    border-color: color-mix(in oklab, var(--accent) 40%, var(--hub-invert-mix));
+    /* 66% rather than a lighter mix: at 72% the mint accent fell to 3.16:1 against
+       the near-white fill, which is thin for a 1.75px icon stroke. This holds the
+       worst case at ~3.9:1 in both themes. */
+    color: color-mix(in oklab, var(--accent) 66%, var(--hub-invert-mix));
   }
 }
 
