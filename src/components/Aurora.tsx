@@ -3,17 +3,17 @@
 const BLOBS = [
   {
     color: 'var(--color-brand)',
-    animation: 'hub-drift-a 30s ease-in-out infinite',
+    animation: 'hub-drift-a 55s ease-in-out infinite',
     style: { top: '-18rem', left: '-10rem', width: '46rem', height: '46rem' },
   },
   {
     color: 'oklch(0.6 0.11 220)',
-    animation: 'hub-drift-b 38s ease-in-out infinite',
+    animation: 'hub-drift-b 70s ease-in-out infinite',
     style: { top: '-8rem', right: '-14rem', width: '42rem', height: '42rem' },
   },
   {
     color: 'oklch(0.85 0.13 175)',
-    animation: 'hub-drift-c 46s ease-in-out infinite',
+    animation: 'hub-drift-c 88s ease-in-out infinite',
     style: { top: '16rem', left: '32%', width: '38rem', height: '38rem' },
   },
 ]

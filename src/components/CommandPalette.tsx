@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { CATEGORY_BY_ID } from '../data/categories'
 import { TOOLS, type Tool } from '../data/tools'
 import { matchIndices, searchTools } from '../lib/fuzzy'
+import { EASE_SMOOTH } from '../lib/motion'
 
 const LISTBOX_ID = 'palette-listbox'
 const optionId = (index: number) => `palette-option-${index}`
@@ -125,7 +126,7 @@ export function CommandPalette({ open, onClose }: { open: boolean; onClose: () =
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.18 }}
+          transition={{ duration: 0.3, ease: EASE_SMOOTH }}
         >
           <div
             className="absolute inset-0 bg-black/45 backdrop-blur-[2px]"
@@ -140,7 +141,7 @@ export function CommandPalette({ open, onClose }: { open: boolean; onClose: () =
             initial={{ opacity: 0, y: -12, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.98 }}
-            transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.42, ease: EASE_SMOOTH }}
             className="hub-glass relative w-full max-w-lg overflow-hidden rounded-2xl border shadow-2xl"
             style={{ borderColor: 'var(--hub-border-strong)' }}
           >
@@ -191,7 +192,7 @@ export function CommandPalette({ open, onClose }: { open: boolean; onClose: () =
                     aria-disabled={available ? undefined : true}
                     onMouseEnter={() => setActiveIndex(index)}
                     onClick={() => activate(tool)}
-                    className={`flex cursor-pointer items-center gap-3 rounded-xl px-3 py-2.5 transition-colors duration-150 ${
+                    className={`flex cursor-pointer items-center gap-3 rounded-xl px-3 py-2.5 transition-colors duration-300 ease-[var(--ease-smooth)] ${
                       available ? '' : 'cursor-not-allowed opacity-55'
                     }`}
                     style={isActive ? { background: 'var(--hub-spotlight)' } : undefined}

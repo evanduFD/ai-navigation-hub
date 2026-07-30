@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from 'motion/react'
 import { useEffect, useRef } from 'react'
+import { EASE_SMOOTH } from '../lib/motion'
 
 const SHORTCUTS = [
   { keys: ['Ctrl', 'K'], label: 'Open the command palette' },
@@ -39,7 +40,7 @@ export function ShortcutsOverlay({ open, onClose }: { open: boolean; onClose: ()
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.18 }}
+          transition={{ duration: 0.3, ease: EASE_SMOOTH }}
         >
           <div className="absolute inset-0 bg-black/45" onClick={onClose} aria-hidden />
 
@@ -50,7 +51,7 @@ export function ShortcutsOverlay({ open, onClose }: { open: boolean; onClose: ()
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.97 }}
-            transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.42, ease: EASE_SMOOTH }}
             className="hub-glass relative w-full max-w-sm rounded-2xl border p-6 shadow-2xl"
             style={{ borderColor: 'var(--hub-border-strong)' }}
           >

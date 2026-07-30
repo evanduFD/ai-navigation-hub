@@ -31,7 +31,7 @@ export function SearchBar({ value, onChange, inputRef, resultCount }: Props) {
         aria-label="Search tools"
         autoComplete="off"
         spellCheck={false}
-        className="hub-glass w-full rounded-full border py-3 pr-24 pl-11 text-sm outline-none transition-colors duration-300 placeholder:text-muted focus:[border-color:var(--hub-border-strong)] [&::-webkit-search-cancel-button]:hidden"
+        className="hub-glass w-full rounded-full border py-3 pr-24 pl-11 text-sm outline-none transition-colors duration-500 ease-[var(--ease-smooth)] placeholder:text-muted focus:[border-color:var(--hub-border-strong)] [&::-webkit-search-cancel-button]:hidden"
         style={{ borderColor: 'var(--hub-border)' }}
       />
 

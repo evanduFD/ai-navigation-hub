@@ -6,7 +6,7 @@ export function ThemeToggle({ theme, onToggle }: { theme: 'dark' | 'light'; onTo
     <button
       type="button"
       onClick={onToggle}
-      className="grid size-9 place-items-center rounded-full border text-muted transition-colors duration-300 hover:[background:var(--hub-card-hover)] hover:text-fg"
+      className="grid size-9 place-items-center rounded-full border text-muted transition-colors duration-500 ease-[var(--ease-smooth)] hover:[background:var(--hub-card-hover)] hover:text-fg"
       style={{ borderColor: 'var(--hub-border)' }}
     >
       {dark ? (

@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from 'motion/react'
 import { SearchX } from 'lucide-react'
 import { CATEGORIES } from '../data/categories'
 import type { Tool } from '../data/tools'
+import { EASE_SMOOTH, ENTER, EXIT } from '../lib/motion'
 import { ToolCard } from './ToolCard'
 
 type Props = {
@@ -51,7 +52,9 @@ export function ToolGrid({ tools, firstRender, onReset }: Props) {
           animate="visible"
           variants={{
             hidden: {},
-            visible: { transition: { staggerChildren: 0.06, delayChildren: 0.1 + sectionIndex * 0.08 } },
+            visible: {
+              transition: { staggerChildren: 0.1, delayChildren: 0.15 + sectionIndex * 0.14 },
+            },
           }}
         >
           <div className="mb-5 flex items-baseline gap-3">
@@ -78,9 +81,11 @@ export function ToolGrid({ tools, firstRender, onReset }: Props) {
                   key={tool.id}
                   layout
                   className="m-0"
-                  variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }}
-                  exit={{ opacity: 0, scale: 0.97 }}
-                  transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                  variants={{ hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0 } }}
+                  exit={{ opacity: 0, scale: 0.97, transition: EXIT }}
+                  // Entrance is slow and cinematic, but `layout` (which runs on every
+                  // filter change) stays quick — a 0.75s reflow feels broken to use.
+                  transition={{ ...ENTER, layout: { duration: 0.4, ease: EASE_SMOOTH } }}
                 >
                   <ToolCard tool={tool} />
                 </motion.li>

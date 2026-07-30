@@ -30,7 +30,7 @@ export function CategoryFilter({ active, onChange, counts }: Props) {
             aria-pressed={isActive}
             // No transform on this button: it hosts the layoutId pill, and scaling
             // the parent would skew motion's layout-projection measurements.
-            className={`hub-chip relative rounded-full px-4 py-2 text-[0.8rem] transition-colors duration-300 ${
+            className={`hub-chip relative rounded-full px-4 py-2 text-[0.8rem] transition-colors duration-500 ease-[var(--ease-smooth)] ${
               isActive ? 'font-semibold' : 'font-medium text-muted hover:text-fg'
             }`}
             style={{
@@ -50,7 +50,9 @@ export function CategoryFilter({ active, onChange, counts }: Props) {
                   background:
                     'linear-gradient(135deg, var(--color-brand), color-mix(in oklab, var(--color-brand) 70%, white))',
                 }}
-                transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+                // Slightly overdamped (ratio ~1.05) so the pill glides to a stop with
+                // no bounce, rather than snapping into place.
+                transition={{ type: 'spring', stiffness: 170, damping: 27, mass: 1 }}
               />
             )}
             <span className="relative z-10 flex items-center gap-1.5">

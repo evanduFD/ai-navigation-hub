@@ -6,7 +6,7 @@ import { useSpotlight } from '../hooks/useSpotlight'
 // box-shadow is in the transition list deliberately — without it the shadow snaps
 // in while the lift eases, which is what made the hover feel abrupt.
 const SHELL =
-  'hub-card group relative flex h-full flex-col gap-3 overflow-hidden rounded-2xl border p-5 text-left transition-[border-color,background-color,box-shadow,transform] duration-[450ms] ease-[var(--ease-out-expo)]'
+  'hub-card group relative flex h-full flex-col gap-3 overflow-hidden rounded-2xl border p-5 text-left transition-[border-color,background-color,box-shadow,transform] duration-[700ms] ease-[var(--ease-smooth)]'
 
 const HOVER =
   'hover:-translate-y-1 hover:[border-color:var(--hub-border-strong)] hover:[background:var(--hub-card-hover)] hover:shadow-[0_22px_48px_-24px_rgb(0_0_0/0.55)] focus-within:[border-color:var(--hub-border-strong)] motion-reduce:hover:translate-y-0'
@@ -48,7 +48,7 @@ export function ToolCard({ tool }: { tool: Tool }) {
       {available && (
         <div
           aria-hidden
-          className="pointer-events-none absolute -top-40 -left-40 size-80 rounded-full transition-opacity duration-[450ms] ease-[var(--ease-out-expo)] [will-change:transform,opacity] motion-reduce:hidden"
+          className="pointer-events-none absolute -top-40 -left-40 size-80 rounded-full transition-opacity duration-[700ms] ease-[var(--ease-smooth)] [will-change:transform,opacity] motion-reduce:hidden"
           style={{
             background: `radial-gradient(circle at center, ${accent} 0%, transparent 65%)`,
             transform: 'translate3d(var(--mx), var(--my), 0)',
@@ -68,7 +68,7 @@ export function ToolCard({ tool }: { tool: Tool }) {
         {available ? (
           <ArrowUpRight
             aria-hidden
-            className="size-4 shrink-0 translate-y-1 text-muted opacity-0 transition-[transform,opacity] duration-[450ms] ease-[var(--ease-out-expo)] group-hover:translate-y-0 group-hover:opacity-100"
+            className="size-4 shrink-0 translate-y-1 text-muted opacity-0 transition-[transform,opacity] duration-[700ms] ease-[var(--ease-smooth)] group-hover:translate-y-0 group-hover:opacity-100"
           />
         ) : (
           <span

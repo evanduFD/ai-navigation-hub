@@ -22,7 +22,7 @@
   --color-workbench: oklch(0.79 0.12 193);
   --color-operations: oklch(0.84 0.14 165);
 
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.22, 1);
 }
 
 @layer base {
@@ -74,8 +74,8 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     transition:
-      background-color 0.45s var(--ease-out-expo),
-      color 0.45s var(--ease-out-expo);
+      background-color 0.7s var(--ease-smooth),
+      color 0.7s var(--ease-smooth);
   }
 
   h1,
@@ -109,7 +109,7 @@
   .hub-card-rule {
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform 0.55s var(--ease-out-expo);
+    transition: transform 0.9s var(--ease-smooth);
   }
 
   /* These colours live here rather than inline: an inline style would win over
@@ -122,9 +122,9 @@
   .hub-card-tile,
   .hub-card-title {
     transition:
-      background-color 0.45s var(--ease-out-expo),
-      border-color 0.45s var(--ease-out-expo),
-      color 0.45s var(--ease-out-expo);
+      background-color 0.7s var(--ease-smooth),
+      border-color 0.7s var(--ease-smooth),
+      color 0.7s var(--ease-smooth);
   }
 
   .hub-card:not([aria-disabled]):hover .hub-card-rule {

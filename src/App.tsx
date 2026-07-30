@@ -22,10 +22,12 @@ export default function App() {
   const [shortcutsOpen, setShortcutsOpen] = useState(false)
   const searchRef = useRef<HTMLInputElement>(null)
 
-  // Drives the entrance cascade exactly once; filtering must not re-run it.
+  // Drives the entrance cascade exactly once; filtering must not re-run it. The
+  // window has to outlast the cascade itself — the last card starts at roughly
+  // 0.63s (section delay + stagger) and runs for 0.75s.
   const [firstRender, setFirstRender] = useState(true)
   useEffect(() => {
-    const timer = setTimeout(() => setFirstRender(false), 1200)
+    const timer = setTimeout(() => setFirstRender(false), 1800)
     return () => clearTimeout(timer)
   }, [])
 
@@ -93,7 +95,7 @@ export default function App() {
                 <button
                   type="button"
                   onClick={openPalette}
-                  className="flex items-center gap-2 rounded-full border px-3 py-1.5 text-[0.75rem] text-muted transition-colors duration-300 hover:[background:var(--hub-card-hover)] hover:text-fg"
+                  className="flex items-center gap-2 rounded-full border px-3 py-1.5 text-[0.75rem] text-muted transition-colors duration-500 ease-[var(--ease-smooth)] hover:[background:var(--hub-card-hover)] hover:text-fg"
                   style={{ borderColor: 'var(--hub-border)' }}
                 >
                   <Command className="size-3.5" strokeWidth={1.75} aria-hidden />
@@ -110,7 +112,7 @@ export default function App() {
                 <button
                   type="button"
                   onClick={() => setShortcutsOpen(true)}
-                  className="hidden size-9 place-items-center rounded-full border text-muted transition-colors duration-300 hover:[background:var(--hub-card-hover)] hover:text-fg sm:grid"
+                  className="hidden size-9 place-items-center rounded-full border text-muted transition-colors duration-500 ease-[var(--ease-smooth)] hover:[background:var(--hub-card-hover)] hover:text-fg sm:grid"
                   style={{ borderColor: 'var(--hub-border)' }}
                 >
                   <Keyboard className="size-4" strokeWidth={1.75} aria-hidden />
