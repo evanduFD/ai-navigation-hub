@@ -9,7 +9,7 @@ import { useSpotlight } from '../hooks/useSpotlight'
 //   lift and it snaps instead.
 //   `box-shadow` — otherwise the shadow appears instantly while the lift eases.
 const SHELL =
-  'hub-card group relative flex h-full flex-col gap-3 overflow-hidden rounded-2xl border p-5 text-left transition-[border-color,background-color,box-shadow,translate] duration-[700ms] ease-[var(--ease-smooth)]'
+  'hub-card group relative flex h-full flex-col gap-3 overflow-hidden rounded-2xl border p-5 text-left transition-[border-color,background-color,box-shadow,translate] duration-[400ms] ease-[var(--ease-smooth)]'
 
 const HOVER =
   'hover:-translate-y-1 hover:[border-color:var(--hub-border-strong)] hover:[background:var(--hub-card-hover)] hover:shadow-[0_22px_48px_-24px_rgb(0_0_0/0.55)] focus-within:[border-color:var(--hub-border-strong)] motion-reduce:hover:translate-y-0'
