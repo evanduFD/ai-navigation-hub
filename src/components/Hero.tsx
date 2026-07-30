@@ -6,23 +6,29 @@ const rise = {
   visible: { opacity: 1, y: 0 },
 }
 
-export function Hero({ availableCount, totalCount }: { availableCount: number; totalCount: number }) {
+export function Hero({
+  availableCount,
+  totalCount,
+}: {
+  availableCount: number
+  totalCount: number
+}) {
   return (
     <motion.div
       initial="hidden"
       animate="visible"
       transition={{ staggerChildren: 0.08 }}
-      className="flex flex-col items-center gap-5 text-center"
+      className="flex flex-col items-center gap-6 text-center"
     >
-      <motion.span
+      <motion.img
         variants={rise}
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="hub-glass inline-flex items-center gap-2 rounded-full border px-3 py-1 text-[0.72rem] font-medium text-muted"
-        style={{ borderColor: 'var(--hub-border)' }}
-      >
-        <Sparkles className="size-3" strokeWidth={2} aria-hidden />
-        {availableCount} of {totalCount} tools live
-      </motion.span>
+        src="/frontier-logo.png"
+        alt="Frontier Dental"
+        // The charcoal half of the wordmark vanishes on the dark canvas, so it is
+        // flattened to a solid white mark there; light theme keeps brand colour.
+        className="h-9 w-auto sm:h-11 dark:brightness-0 dark:invert"
+      />
 
       <motion.h1
         variants={rise}
@@ -41,14 +47,14 @@ export function Hero({ availableCount, totalCount }: { availableCount: number; t
         </span>
       </motion.h1>
 
-      <motion.p
+      <motion.span
         variants={rise}
-        transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-        className="max-w-lg text-[0.9rem] leading-relaxed text-muted"
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        className="hub-glass inline-flex items-center gap-2 rounded-full px-3 py-1 text-[0.72rem] font-medium text-muted"
       >
-        A single door to every internal AI tool the department runs. Each one keeps its own
-        sign-in — this just gets you there faster.
-      </motion.p>
+        <Sparkles className="size-3" strokeWidth={2} aria-hidden />
+        {availableCount} of {totalCount} tools live
+      </motion.span>
     </motion.div>
   )
 }

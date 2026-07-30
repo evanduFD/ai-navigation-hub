@@ -140,25 +140,19 @@ export default function App() {
           </div>
         </main>
 
+        {/* The wordmark now anchors the hero, so the footer stays text-only. */}
         <footer
-          className="flex flex-col items-center gap-4 border-t px-5 py-10 text-center text-[0.75rem] text-muted"
+          className="border-t px-5 py-8 text-center text-[0.75rem] text-muted"
           style={{ borderColor: 'var(--hub-border)' }}
         >
-          <img
-            src="/frontier-logo.png"
-            alt="Frontier Dental"
-            className="h-5 w-auto opacity-55 transition-opacity duration-300 hover:opacity-80 dark:opacity-70 dark:brightness-0 dark:invert"
-          />
-          <p>
-            Each tool keeps its own sign-in. Press{' '}
-            <kbd
-              className="rounded border px-1 font-sans"
-              style={{ borderColor: 'var(--hub-border-strong)' }}
-            >
-              ?
-            </kbd>{' '}
-            for shortcuts.
-          </p>
+          Each tool keeps its own sign-in. Press{' '}
+          <kbd
+            className="rounded border px-1 font-sans"
+            style={{ borderColor: 'var(--hub-border-strong)' }}
+          >
+            ?
+          </kbd>{' '}
+          for shortcuts.
         </footer>
       </div>
 

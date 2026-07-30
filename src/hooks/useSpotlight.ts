@@ -17,10 +17,17 @@ export function useSpotlight<T extends HTMLElement>() {
 
   useEffect(() => () => cancelAnimationFrame(frame.current), [])
 
-  const onPointerEnter = useCallback(() => {
+  const onPointerEnter = useCallback((event: React.PointerEvent<T>) => {
     const el = ref.current
     if (!el) return
-    rect.current = el.getBoundingClientRect()
+
+    const box = el.getBoundingClientRect()
+    rect.current = box
+
+    // Seed the position from the entry point. Without this the glow fades in at the
+    // card's centre and then jumps to the cursor on the first move.
+    el.style.setProperty('--mx', `${event.clientX - box.left}px`)
+    el.style.setProperty('--my', `${event.clientY - box.top}px`)
     el.style.setProperty('--glow', '1')
   }, [])
 

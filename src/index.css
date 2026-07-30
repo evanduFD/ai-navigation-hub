@@ -102,6 +102,45 @@
   backdrop-filter: blur(20px) saturate(1.6);
 }
 
+/* Card hover internals. Kept in CSS rather than Tailwind arbitrary values so the
+   color-mix() calls stay legible. Each card sets its own --accent inline. */
+@layer components {
+  /* Accent rule wipes in on transform only, so it stays on the compositor. */
+  .hub-card-rule {
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.55s var(--ease-out-expo);
+  }
+
+  /* These colours live here rather than inline: an inline style would win over
+     the hover rule below. `:not([aria-disabled])` keeps "Coming soon" cards inert. */
+  .hub-card-tile {
+    background: color-mix(in oklab, var(--accent) 12%, transparent);
+    border-color: var(--hub-border);
+  }
+
+  .hub-card-tile,
+  .hub-card-title {
+    transition:
+      background-color 0.45s var(--ease-out-expo),
+      border-color 0.45s var(--ease-out-expo),
+      color 0.45s var(--ease-out-expo);
+  }
+
+  .hub-card:not([aria-disabled]):hover .hub-card-rule {
+    transform: scaleX(1);
+  }
+
+  .hub-card:not([aria-disabled]):hover .hub-card-tile {
+    background: color-mix(in oklab, var(--accent) 26%, transparent);
+    border-color: color-mix(in oklab, var(--accent) 45%, transparent);
+  }
+
+  .hub-card:not([aria-disabled]):hover .hub-card-title {
+    color: var(--accent);
+  }
+}
+
 @keyframes hub-drift-a {
   0%,
   100% {
