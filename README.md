@@ -29,6 +29,7 @@ VITE_URL_VOICEBOT_ANALYTICS
 VITE_URL_EMAILBOT_ANALYTICS
 VITE_URL_MCP_WORKSPACE
 VITE_URL_QA_AGENT
+VITE_URL_OUTBOUND_CALLER
 VITE_URL_REPRICER_PORTAL
 VITE_URL_NEWSLETTER
 ```
@@ -37,6 +38,11 @@ A var that is missing, blank, or not a valid `http(s)` URL does **not** produce 
 broken link. The tool still appears on the page as a disabled *Coming soon* card,
 and in dev the console names the env var to set. That keeps the page honest while
 URLs are still being collected.
+
+A value with no scheme (`tool.example.net`) is read as `https://` rather than
+rejected, since leaving off the scheme is an easy mistake and hiding the tool is a
+confusing way to report it. Values that already carry a scheme are left alone, so
+`javascript:` and friends still fail the check.
 
 > [!IMPORTANT]
 > Vite inlines `VITE_*` values into the JS bundle **at build time**. They are
